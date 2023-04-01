@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://oyc7bxfiwvp7"]
+
+[ext_resource type="PackedScene" uid="uid://ch8dira8rnh4g" path="res://HUD.tscn" id="1_1l33u"]
+[ext_resource type="PackedScene" uid="uid://d2cdroli1vm8f" path="res://Player/Player.tscn" id="1_4ym65"]
+
+[node name="Main" type="CanvasLayer"]
+
+[node name="HUD" parent="." instance=ExtResource("1_1l33u")]
+
+[node name="Player" parent="." instance=ExtResource("1_4ym65")]
+position = Vector2(566, 444)
+scale = Vector2(1.5, 1.5)
