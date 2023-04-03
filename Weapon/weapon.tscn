@@ -4,3 +4,8 @@
 
 [node name="Weapon" type="Node"]
 script = ExtResource("1_aiqd7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.357
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

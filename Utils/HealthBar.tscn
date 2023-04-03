@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://py04wbstlxxq"]
+
+[node name="HealthBar" type="ColorRect"]
+offset_right = 100.0
+offset_bottom = 10.0
+color = Color(1, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Green" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 10.0
+color = Color(0, 1, 0, 1)
+metadata/_edit_use_anchors_ = true

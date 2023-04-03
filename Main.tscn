@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://curcelcqp0f3a"]
+[gd_scene load_steps=4 format=3 uid="uid://curcelcqp0f3a"]
 
 [ext_resource type="PackedScene" uid="uid://bq7rtwda5y4lb" path="res://Player/player.tscn" id="2_043f6"]
+[ext_resource type="PackedScene" uid="uid://bc2lrcgcgux71" path="res://Monster/monster.tscn" id="3_ocsmo"]
 [ext_resource type="PackedScene" uid="uid://jj5pb4yyhmrs" path="res://Weapon/weapon_pickup.tscn" id="4_70frw"]
 
 [node name="Main" type="Node"]
@@ -11,3 +12,6 @@ collision_layer = 1
 weapon_name = "MissileLauncher"
 
 [node name="Player" parent="." instance=ExtResource("2_043f6")]
+
+[node name="monster" parent="." instance=ExtResource("3_ocsmo")]
+position = Vector2(473, 95)

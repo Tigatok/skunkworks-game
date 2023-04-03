@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bc2lrcgcgux71"]
+
+[ext_resource type="Texture2D" uid="uid://tx2kwb0ga5ln" path="res://Monster/monster.png" id="1_guaso"]
+[ext_resource type="Script" path="res://Monster/monster.gd" id="1_wq45l"]
+[ext_resource type="PackedScene" uid="uid://py04wbstlxxq" path="res://Utils/HealthBar.tscn" id="3_qp4ga"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvs6t"]
+size = Vector2(56, 39)
+
+[node name="monster" type="Area2D"]
+script = ExtResource("1_wq45l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_guaso")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -4.5)
+shape = SubResource("RectangleShape2D_vvs6t")
+
+[node name="HealthBar" parent="." instance=ExtResource("3_qp4ga")]
+offset_left = -50.0
+offset_top = 20.0
+offset_right = 50.0
+offset_bottom = 30.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="damaged" from="." to="." method="_on_damaged"]
