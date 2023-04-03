@@ -11,12 +11,10 @@ func handle_move():
 func handle_fire():
 	if(!Input.is_action_just_pressed("space")):
 		return
-	var hasWeaponEquipped = weapons.size() > 0
-	print("S", weapons)
-	if (!hasWeaponEquipped):
-		return;
+	if (!$Weapon):
+		return
 	# Check for active weapon, or fire all of them.
-	var activeWeapon = weapons[0]
+	var activeWeapon = $Weapon
 	activeWeapon.fireWeapon()
 
 func handle_animation_change(input_dir:Vector2):

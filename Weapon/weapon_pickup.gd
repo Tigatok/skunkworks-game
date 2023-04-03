@@ -5,5 +5,6 @@ extends Area2D
 func _on_body_entered(body):
 	var weapon = load("res://Weapon/weapon.tscn")
 	weapon = weapon.instantiate()
-	body.weapons.append(weapon)
+	weapon.weaponName = weapon_name
+	body.add_child(weapon)
 	queue_free()

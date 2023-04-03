@@ -8,5 +8,6 @@
 [node name="WeaponPickup" parent="." instance=ExtResource("4_70frw")]
 position = Vector2(636, 211)
 collision_layer = 1
+weapon_name = "MissileLauncher"
 
 [node name="Player" parent="." instance=ExtResource("2_043f6")]
