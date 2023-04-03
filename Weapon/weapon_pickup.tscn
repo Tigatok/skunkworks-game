@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://jj5pb4yyhmrs"]
+
+[ext_resource type="Script" path="res://Weapon/weapon_pickup.gd" id="1_c7v0i"]
+[ext_resource type="Texture2D" uid="uid://cdd702vhdy7dq" path="res://Weapon/weapon.png" id="1_jf4un"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_re0l1"]
+height = 60.3531
+
+[node name="WeaponPickup" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_c7v0i")
+
+[node name="2Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jf4un")
+offset = Vector2(3, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.657989
+shape = SubResource("CapsuleShape2D_re0l1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

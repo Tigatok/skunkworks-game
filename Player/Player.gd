@@ -1,56 +1,36 @@
-extends Area2D
-@export var missile_scene: PackedScene
-@export var speed = 400
+extends CharacterBody2D
 
-var screen_size
-func _ready():
-	screen_size = get_viewport_rect().size
+@export var speed = 300
+@export var weapons = []
 
-	
-func _process(delta):
-	var velocity = Vector2.ZERO # The player's movement vector.
-	velocity = handleDirection(velocity)
-	velocity = normalizeSpeed(velocity)
-	handleAnimation(velocity)
-	updatePosition(velocity, delta)
-	handleInput()
+func handle_move():
+	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	velocity = input_dir * speed
+	handle_animation_change(input_dir)
 
-func handleInput():
-	if Input.is_action_pressed("space"):
-		fireWeapon()
+func handle_fire():
+	if(!Input.is_action_just_pressed("space")):
+		return
+	var hasWeaponEquipped = weapons.size() > 0
+	print("S", weapons)
+	if (!hasWeaponEquipped):
+		return;
+	# Check for active weapon, or fire all of them.
+	var activeWeapon = weapons[0]
+	activeWeapon.fireWeapon()
 
-func handleAnimation(velocity: Vector2):
-	$AnimatedSprite2D.animation = 'top'
-	if velocity.x != 0:
-		$AnimatedSprite2D.animation = "side"
-		$AnimatedSprite2D.flip_v = false
-		$AnimatedSprite2D.flip_h = velocity.x < 0
+func handle_animation_change(input_dir:Vector2):
+	if (input_dir.x > 0):
+		$AnimatedSprite2D.play("bank")
+		$AnimatedSprite2D.flip_h = false
+	elif (input_dir.x < 0):
+		$AnimatedSprite2D.play("bank")
+		$AnimatedSprite2D.flip_h = true
+	else:
+		$AnimatedSprite2D.play("default")
+		$AnimatedSprite2D.flip_h = false
 
-# Update position based on velocity.
-func updatePosition(velocity:Vector2, delta:float):
-	position += velocity * delta
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
-	
-# Normalizes speed, if not exists, diagonal would go faster.
-func normalizeSpeed(velocity:Vector2):
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-	return velocity
-
-# Handles the direction of movement.
-func handleDirection(velocity:Vector2): 
-	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
-	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
-	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
-	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
-	return velocity
- 
-# This function needs to spawn in a missile, and set it to go.
-func fireWeapon():
-	var missile = missile_scene.instantiate()
-	add_child(missile)
+func _physics_process(delta):
+	handle_move()
+	handle_fire()
+	move_and_collide(velocity * delta)
