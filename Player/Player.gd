@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var speed = 300
 @export var weapons = []
+@export var playerHealth = 50
+@onready var maxSize = playerHealth
 
 func handle_move():
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -29,6 +31,20 @@ func handle_animation_change(input_dir:Vector2):
 		$AnimatedSprite2D.flip_h = false
 
 func _physics_process(delta):
+	if (playerHealth <= 0):
+		dead()
+		return
 	handle_move()
 	handle_fire()
 	move_and_collide(velocity * delta)
+
+func dead():
+	$AnimatedSprite2D.play("explode")
+	$AnimatedSprite2D.animation_finished
+
+	
+func takeDamage(damageTaken: int):
+	var ratio = float(damageTaken) / float(maxSize)
+	var amountToRemove = float(ratio) * float(100)
+	$HealthBar/Green.size.x -= amountToRemove
+	playerHealth -= damageTaken

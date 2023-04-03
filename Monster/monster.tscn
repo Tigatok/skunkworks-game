@@ -5,16 +5,20 @@
 [ext_resource type="PackedScene" uid="uid://py04wbstlxxq" path="res://Utils/HealthBar.tscn" id="3_qp4ga"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vvs6t"]
-size = Vector2(56, 39)
+size = Vector2(64, 46)
 
-[node name="Monster" type="Area2D"]
+[node name="Monster" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 2.66454e-15
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_wq45l")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_guaso")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2, -4.5)
+position = Vector2(2, -4)
 shape = SubResource("RectangleShape2D_vvs6t")
 
 [node name="HealthBar" parent="." instance=ExtResource("3_qp4ga")]

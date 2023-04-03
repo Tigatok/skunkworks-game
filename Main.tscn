@@ -7,20 +7,20 @@
 [node name="Main" type="Node"]
 
 [node name="WeaponPickup" parent="." instance=ExtResource("4_70frw")]
-position = Vector2(636, 211)
+position = Vector2(468, 455)
 collision_layer = 1
 weapon_name = "MissileLauncher"
 
 [node name="Player" parent="." instance=ExtResource("2_043f6")]
+position = Vector2(464, 544)
+speed = 300
+weapons = []
 
 [node name="Monster" parent="." instance=ExtResource("3_ocsmo")]
 position = Vector2(473, 95)
 
 [node name="Monster2" parent="." instance=ExtResource("3_ocsmo")]
-position = Vector2(824, 87)
+position = Vector2(134, 295)
 
 [node name="Monster3" parent="." instance=ExtResource("3_ocsmo")]
-position = Vector2(170, 436)
-
-[node name="Monster4" parent="." instance=ExtResource("3_ocsmo")]
-position = Vector2(1021, 666)
+position = Vector2(799, 307)
