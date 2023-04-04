@@ -1,29 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://curcelcqp0f3a"]
+[gd_scene load_steps=4 format=3 uid="uid://curcelcqp0f3a"]
 
 [ext_resource type="PackedScene" uid="uid://bq7rtwda5y4lb" path="res://Player/Player.tscn" id="2_043f6"]
-[ext_resource type="PackedScene" uid="uid://bc2lrcgcgux71" path="res://Monster/monster.tscn" id="3_ocsmo"]
 [ext_resource type="PackedScene" uid="uid://jj5pb4yyhmrs" path="res://Weapon/weapon_pickup.tscn" id="4_70frw"]
-[ext_resource type="PackedScene" uid="uid://60w5d0n5lcms" path="res://HUD/HUD.tscn" id="4_lopj0"]
+[ext_resource type="PackedScene" uid="uid://32yk0vcy2utb" path="res://HUD/HUD.tscn" id="4_lopj0"]
 
 [node name="Main" type="Node"]
-
-[node name="WeaponPickup" parent="." instance=ExtResource("4_70frw")]
-position = Vector2(468, 455)
-collision_layer = 1
-weapon_name = "MissileLauncher"
 
 [node name="Player" parent="." instance=ExtResource("2_043f6")]
 position = Vector2(464, 544)
 
-[node name="Monster" parent="." instance=ExtResource("3_ocsmo")]
-position = Vector2(473, 95)
-
-[node name="Monster2" parent="." instance=ExtResource("3_ocsmo")]
-position = Vector2(134, 295)
-
-[node name="Monster3" parent="." instance=ExtResource("3_ocsmo")]
-position = Vector2(799, 307)
-
 [node name="HUD" parent="." instance=ExtResource("4_lopj0")]
+
+[node name="WeaponPickup" parent="." instance=ExtResource("4_70frw")]
+position = Vector2(468, 462)
 
 [connection signal="coin_picked" from="Player" to="HUD" method="_on_player_coin_picked"]

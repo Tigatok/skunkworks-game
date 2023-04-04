@@ -1,12 +1,12 @@
 extends Node
 var weaponName
+var weaponIcon
 var canFire = true
 @export var automatedFiring = false
 @export var damage = 5
 
 func fireWeapon():
 	if (canFire):
-		print("Firing", weaponName)
 		var missile = load("res://Missile/missile.tscn")
 		missile = missile.instantiate()
 		var parentPosition = get_parent().position

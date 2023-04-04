@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://60w5d0n5lcms"]
+[gd_scene load_steps=3 format=3 uid="uid://32yk0vcy2utb"]
 
 [ext_resource type="Script" path="res://HUD/HUD.gd" id="1_nygor"]
+[ext_resource type="PackedScene" uid="uid://bqns8i8kygsyb" path="res://HUD/Inventory/Inventory Bar.tscn" id="2_8vql8"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_nygor")
@@ -15,3 +16,7 @@ offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "0"
+
+[node name="InventoryBar" parent="." instance=ExtResource("2_8vql8")]
+
+[connection signal="item_added" from="." to="InventoryBar" method="_on_hud_item_added"]
