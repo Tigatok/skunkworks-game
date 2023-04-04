@@ -37,8 +37,14 @@ func takeDamage(body):
 	damaged.emit()
 	print("Hit, health: ", health)
 	if (health <= 0):
-		queue_free()
+		die()
 
+func die():
+	queue_free()
+	var coin = load("res://Coin/Coin.tscn")
+	coin = coin.instantiate()
+	coin.position = self.position
+	get_parent().add_child(coin)
 
 func _on_body_entered(body):
 	if (body.name == "Missile"):

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+signal coin_picked
+
 @export var speed = 300
 @export var weapons = []
 @export var playerHealth = 50
@@ -48,3 +50,7 @@ func takeDamage(damageTaken: int):
 	var amountToRemove = float(ratio) * float(100)
 	$HealthBar/Green.size.x -= amountToRemove
 	playerHealth -= damageTaken
+
+func collectCoin():
+	print("collected coin")
+	coin_picked.emit()
