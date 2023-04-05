@@ -4,6 +4,7 @@ signal coin_picked
 signal item_picked_up
 
 @export var speed = 300
+@export var weapons = []
 @export var playerHealth = 50
 @onready var maxSize = playerHealth
 
@@ -19,9 +20,7 @@ func handle_fire():
 		return
 	# Check for active weapon, or fire all of them.
 	var activeWeapon = $Weapon
-	var playerWeapons = get_tree().get_nodes_in_group('player_weapons')
-	for node in playerWeapons:
-		node.fireWeapon()
+	activeWeapon.fireWeapon()
 
 func handle_animation_change(input_dir:Vector2):
 	if (input_dir.x > 0):
@@ -59,5 +58,4 @@ func collectCoin():
 
 func collectWeapon(weapon):
 	print("Collected weapon", weapon)
-	weapon.add_to_group('player_weapons')
 	item_picked_up.emit(weapon)
