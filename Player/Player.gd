@@ -40,7 +40,7 @@ func _physics_process(delta):
 	handle_move()
 	handle_fire()
 	move_and_collide(velocity * delta)
-
+	
 func dead():
 	$AnimatedSprite2D.play("explode")
 	$AnimatedSprite2D.animation_finished

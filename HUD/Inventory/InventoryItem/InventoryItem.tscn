@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://dfu76wqeff2nw"]
+[gd_scene load_steps=2 format=3 uid="uid://dfu76wqeff2nw"]
+
+[ext_resource type="Script" path="res://HUD/Inventory/InventoryItem/InventoryItem.gd" id="1_3uki8"]
 
 [node name="InventoryItem" type="Sprite2D"]
+script = ExtResource("1_3uki8")
