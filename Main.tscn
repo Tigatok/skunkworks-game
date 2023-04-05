@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://curcelcqp0f3a"]
+[gd_scene load_steps=5 format=3 uid="uid://curcelcqp0f3a"]
 
 [ext_resource type="PackedScene" uid="uid://bq7rtwda5y4lb" path="res://Player/Player.tscn" id="2_043f6"]
+[ext_resource type="PackedScene" uid="uid://bc2lrcgcgux71" path="res://Monster/monster.tscn" id="3_ocsmo"]
 [ext_resource type="PackedScene" uid="uid://jj5pb4yyhmrs" path="res://Weapon/weapon_pickup.tscn" id="4_70frw"]
 [ext_resource type="PackedScene" uid="uid://32yk0vcy2utb" path="res://HUD/HUD.tscn" id="4_lopj0"]
 
@@ -16,6 +17,12 @@ position = Vector2(459, 462)
 
 [node name="WeaponPickup2" parent="." instance=ExtResource("4_70frw")]
 position = Vector2(595, 454)
+
+[node name="Monster" parent="." instance=ExtResource("3_ocsmo")]
+position = Vector2(202, 317)
+
+[node name="Monster2" parent="." instance=ExtResource("3_ocsmo")]
+position = Vector2(541, 209)
 
 [connection signal="coin_picked" from="Player" to="HUD" method="_on_player_coin_picked"]
 [connection signal="item_picked_up" from="Player" to="HUD" method="_on_player_item_picked_up"]
