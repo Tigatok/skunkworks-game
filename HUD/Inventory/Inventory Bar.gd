@@ -27,13 +27,13 @@ func set_active_inventory_item(keyPressed):
 			var jj = inventory_items[i]
 			if (ii != jj):
 				inventory_items[i].emit_signal('deactivate')
+				update_active_item.emit()
 			activeItem = keyPressed
 			inventory_items[keyPressed].setAsActive(true)
 		
 func _on_hud_item_added(item):
 	addItemToInventoryArray(item)
 	addItemToInventoryBar(item)
-#	print(get_tree().get_nodes_in_group('inventory_items'))
 
 func addItemToInventoryArray(item):
 	itemsInInventory.append(item)
