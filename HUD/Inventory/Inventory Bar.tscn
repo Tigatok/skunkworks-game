@@ -20,7 +20,6 @@ func _on_body_entered(body):
 	weapon.weaponName = weapon_name
 	weapon.weaponIcon = weapon_icon
 	body.add_child(weapon)
-	print(\"W\", weapon)
 	weapon_picked_up.emit(weapon)
 	queue_free()
 "

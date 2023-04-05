@@ -17,14 +17,18 @@ func _process(delta):
 	if (Input.is_action_just_pressed(KEY_INVENTORY_3)):
 		set_active_inventory_item(2)
 
-func set_active_inventory_item(index):
+func set_active_inventory_item(keyPressed):
 	var inventory_items = get_tree().get_nodes_in_group('inventory_items')
-	if index < inventory_items.size():
-		activeItem = index
-		inventory_items[index].setAsActive(true)
-		for item in inventory_items:
-			print("self", self, " item:", item)
-			item.emit_signal('deactivate')
+	for i in range(inventory_items.size()):
+		
+#		print("D", i)
+		if keyPressed < inventory_items.size():
+			var ii = inventory_items[keyPressed]
+			var jj = inventory_items[i]
+			if (ii != jj):
+				inventory_items[i].emit_signal('deactivate')
+			activeItem = keyPressed
+			inventory_items[keyPressed].setAsActive(true)
 		
 func _on_hud_item_added(item):
 	addItemToInventoryArray(item)

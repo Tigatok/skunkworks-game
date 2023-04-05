@@ -1,15 +1,14 @@
 extends Sprite2D
 
-var isActive = false
 signal deactivate
 
 func setAsActive(active):
-	isActive = active
 	print("Is active?", active)
-	if (active == true && !isActive):
-		isActive = true
+	if (active == true):
+		print("S", self.offset, " ", $ActiveLabel.position)
 		$ActiveLabel.position = self.offset
-		$ActiveLabel.text = 'Active'
+		$ActiveLabel.text = 'X'
+		$ActiveLabel.show()
 
 func _on_deactivate():
-	setAsActive(false)
+	$ActiveLabel.hide()
