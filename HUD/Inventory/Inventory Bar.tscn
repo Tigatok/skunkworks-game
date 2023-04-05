@@ -1,6 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqns8i8kygsyb"]
+[gd_scene load_steps=4 format=3 uid="uid://bqns8i8kygsyb"]
 
 [ext_resource type="Script" path="res://HUD/Inventory/Inventory Bar.gd" id="1_c4p0u"]
+[ext_resource type="PackedScene" uid="uid://jj5pb4yyhmrs" path="res://Weapon/weapon_pickup.tscn" id="2_n2r0e"]
+
+[sub_resource type="GDScript" id="GDScript_xcuaw"]
+script/source = "extends Area2D
+
+@export var weapon_name = \"Cannon\"
+@export var weapon_icon = preload('res://Weapon/weapon.png')
+
+signal weapon_picked_up
+
+func _ready():
+	print(\"New\", weapon_name)
+
+func _on_body_entered(body):
+	var weapon = preload(\"res://Weapon/weapon.tscn\")
+	weapon = weapon.instantiate()
+	weapon.weaponName = weapon_name
+	weapon.weaponIcon = weapon_icon
+	body.add_child(weapon)
+	print(\"W\", weapon)
+	weapon_picked_up.emit(weapon)
+	queue_free()
+"
 
 [node name="InventoryBar" type="Panel"]
 anchors_preset = 7
@@ -14,3 +37,8 @@ offset_right = 160.0
 grow_horizontal = 2
 grow_vertical = 0
 script = ExtResource("1_c4p0u")
+
+[node name="WeaponPickup" parent="." instance=ExtResource("2_n2r0e")]
+position = Vector2(471, 480)
+collision_layer = 1
+script = SubResource("GDScript_xcuaw")
