@@ -6,12 +6,19 @@
 
 [node name="Main" type="Node"]
 
-[node name="Player" parent="." instance=ExtResource("2_043f6")]
+[node name="Player" parent="." groups=["weapons"] instance=ExtResource("2_043f6")]
 position = Vector2(464, 544)
 
 [node name="HUD" parent="." instance=ExtResource("4_lopj0")]
 
+[node name="WeaponPickup2" parent="." instance=ExtResource("4_70frw")]
+position = Vector2(600, 466)
+
 [node name="WeaponPickup" parent="." instance=ExtResource("4_70frw")]
-position = Vector2(468, 462)
+position = Vector2(459, 462)
+
+[node name="WeaponPickup3" parent="." instance=ExtResource("4_70frw")]
+position = Vector2(308, 552)
 
 [connection signal="coin_picked" from="Player" to="HUD" method="_on_player_coin_picked"]
+[connection signal="item_picked_up" from="Player" to="HUD" method="_on_player_item_picked_up"]
