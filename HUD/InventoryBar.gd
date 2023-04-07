@@ -1,6 +1,7 @@
 class_name InventoryBar extends PanelContainer
 
-signal update_active_item
+signal update_active_item(item)
+signal update_active_slot(slot_id)
 
 @export var num_slots: int = 5
 
@@ -25,7 +26,6 @@ func _unhandled_key_input(event):
 	if(!item_exists_in_slot(slot_index)):
 		return
 	set_active_item(slot_index)
-	print(active_item)
 
 
 # Checks if an item exists in the provided slot
@@ -39,12 +39,14 @@ func item_exists_in_slot(slot_index: int) -> bool:
 func set_active_item(slot_index: int) -> void:
 	var item_slot = slot_container.get_child(slot_index)
 	active_item = item_slot.item
-	update_active_item.emit(active_item)
-	item_slot.color = Color.hex(0xffffff44)
+	emit_signal('update_active_item', active_item)
+	emit_signal('update_active_slot', item_slot)
+
 	
 func _initialize_slots() -> void:
 	for _i in range(num_slots):
 		var slot = slot_scene.instantiate()
+		connect("update_active_slot", Callable(slot, "_on_update_active_slot"))
 		slot_container.add_child(slot)
 
 func add_item_to_slot(item: Item) -> bool:

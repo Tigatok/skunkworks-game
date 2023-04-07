@@ -12,4 +12,13 @@ func _ready():
 	var item_pickup_instance = $ItemPickup
 	item_pickup_instance.item = item
 	item_pickup_instance.get_node("ItemIcon").texture = item_icon
-	add_child(item_pickup_instance)
+	item.connect('use_item', Callable(self, '_on_use_item'))
+#	add_child(item_pickup_instance)
+
+func _on_use_item():
+	var missile = load("res://Missile/missile.tscn")
+	missile = missile.instantiate()
+	missile.linear_velocity = Vector2(1, (-4 * missile.speed))
+	missile.position = position
+	missile.damage = 5
+	self.add_child(missile)

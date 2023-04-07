@@ -24,13 +24,13 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="Cannon" parent="." instance=ExtResource("3_ix25a")]
+[node name="Cannon2" parent="." instance=ExtResource("3_ix25a")]
 position = Vector2(512, 367)
 item_id = 1
 item_name = "Cannon"
 item_icon = ExtResource("4_b1pvl")
 
-[node name="Ball" parent="." instance=ExtResource("3_ix25a")]
+[node name="Ball1" parent="." instance=ExtResource("3_ix25a")]
 position = Vector2(362, 463)
 item_id = 2
 item_name = "Ball"
