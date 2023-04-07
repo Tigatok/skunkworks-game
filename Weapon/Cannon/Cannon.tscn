@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdp0i7jf1dkuf"]
+
+[ext_resource type="PackedScene" uid="uid://brimw4vdfx63j" path="res://Item/ItemPickup/ItemPickup.tscn" id="1_4i18j"]
+[ext_resource type="Script" path="res://Weapon/Cannon/Cannon.gd" id="1_g8nts"]
+
+[node name="Cannon" type="Node2D"]
+script = ExtResource("1_g8nts")
+
+[node name="ItemPickup" parent="." instance=ExtResource("1_4i18j")]

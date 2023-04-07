@@ -5,6 +5,7 @@ extends Area2D
 @export var texture:Texture
 
 func _ready():
+	print("ItemPickup")
 	if(texture):
 		sprite.texture = texture
 
