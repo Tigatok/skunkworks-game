@@ -1,4 +1,4 @@
-class_name Item
+class_name Item extends Node
 
 enum ItemType {
 	EQUIPMENT,
@@ -6,13 +6,13 @@ enum ItemType {
 	CONSUMABLE
 }
 
-var id: int
-var itemName: String
-var icon: Texture
-var type: ItemType
+@export var id: int
+@export var item_name: String
+@export var icon: Texture
+@export var type: ItemType
 
-func _init(id:int, itemName:String, icon:Texture, type:ItemType):
+func _init(id:int, item_name:String, icon:Texture, type:ItemType):
 	self.id = id
-	self.itemName = itemName
+	self.item_name = item_name
 	self.icon = icon
 	self.type = type

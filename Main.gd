@@ -1,16 +1,15 @@
 extends Node
 
-const ItemType = preload("res://Item/Item.gd").ItemType
+const ItemType = Item.ItemType
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	var icon = load("res://Weapon/weapon.png")
-	var item = Item.new(0000, 'Cannon', icon, ItemType.EQUIPMENT)
-	var itemPickup = load("res://Item/ItemPickup.tscn")
-	itemPickup = itemPickup.instantiate()
-	itemPickup.item = item
-	itemPickup.get_node("ItemIcon").texture = icon
-	itemPickup.position.x=500
-	itemPickup.position.y=500
-	add_child(itemPickup)
-	var player = $Player
+@onready var icon = preload("res://Weapon/weapon.png")
+@onready var item_pickup:PackedScene = preload("res://Item/ItemPickup/ItemPickup.tscn")
+
+@onready var item = Item.new(0000, 'Cannon', icon, ItemType.EQUIPMENT)
+func _ready() -> void:
+	var item_pickup_instance = item_pickup.instantiate()
+	item_pickup_instance.item = item
+	item_pickup_instance.get_node("ItemIcon").texture = icon
+	item_pickup_instance.position.x=500
+	item_pickup_instance.position.y=500
+	add_child(item_pickup_instance)

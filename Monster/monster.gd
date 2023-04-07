@@ -7,11 +7,11 @@ extends RigidBody2D
 
 signal damaged
 
-var damageTaken
+var damage_taken
 var totalSize = 100
 
 func _on_damaged():
-	var xRemove = totalSize / damageTaken
+	var xRemove = totalSize / damage_taken
 	$HealthBar/Green.size.x -= xRemove
 
 func _physics_process(delta):
@@ -31,8 +31,8 @@ func moveTowardPlayer(delta):
 	move_and_collide(moveSpeed)
 
 func takeDamage(body):
-	damageTaken = body.damage
-	health -= damageTaken
+	damage_taken = body.damage
+	health -= damage_taken
 	body.queue_free()
 	damaged.emit()
 	print("Hit, health: ", health)

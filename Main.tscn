@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://curcelcqp0f3a"]
+[gd_scene load_steps=4 format=3 uid="uid://cir2oko0qgwmw"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_nhp8r"]
 [ext_resource type="PackedScene" uid="uid://bq7rtwda5y4lb" path="res://Player/Player.tscn" id="2_043f6"]
-[ext_resource type="PackedScene" uid="uid://cn3imf5klr4tk" path="res://Inventory/InventoryBar.tscn" id="3_afki7"]
+[ext_resource type="PackedScene" uid="uid://dc7pprina7ai6" path="res://HUD/InventoryBar.tscn" id="3_afki7"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_nhp8r")

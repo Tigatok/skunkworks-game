@@ -1,8 +1,10 @@
-# InventorySlot.gd
 extends TextureRect
 
-@onready var item: Item
+var item:Item : set = set_item, get = get_item
 
-func setItem(item:Item):
-	self.item = item
-	texture = item.icon
+func set_item(value: Item = null) -> void:
+	item = value
+	texture = value.icon if value else null
+
+func get_item() -> Item:
+	return item
