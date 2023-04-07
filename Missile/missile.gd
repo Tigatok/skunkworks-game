@@ -4,3 +4,4 @@ var damage
 
 func _ready():
 	set_as_top_level(true)
+
