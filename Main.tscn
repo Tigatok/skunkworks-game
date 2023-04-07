@@ -1,13 +1,12 @@
 [gd_scene load_steps=6 format=3 uid="uid://dmunb1vxfj0w8"]
 
-[ext_resource type="Script" path="res://Main.gd" id="1_nhp8r"]
 [ext_resource type="PackedScene" uid="uid://bq7rtwda5y4lb" path="res://Player/Player.tscn" id="2_043f6"]
 [ext_resource type="PackedScene" uid="uid://dc7pprina7ai6" path="res://HUD/InventoryBar.tscn" id="3_afki7"]
 [ext_resource type="PackedScene" uid="uid://ifsuqt3ecpdm" path="res://Weapon/Weapon/Weapon.tscn" id="3_ix25a"]
 [ext_resource type="Texture2D" uid="uid://cdd702vhdy7dq" path="res://Weapon/weapon.png" id="4_b1pvl"]
+[ext_resource type="Texture2D" uid="uid://cld4cmvqmnh5m" path="res://Missile/missile-1.png" id="5_kduh5"]
 
 [node name="Main" type="Node"]
-script = ExtResource("1_nhp8r")
 
 [node name="Player" parent="." groups=["weapons"] instance=ExtResource("2_043f6")]
 position = Vector2(464, 544)
@@ -30,3 +29,9 @@ position = Vector2(512, 367)
 item_id = 1
 item_name = "Cannon"
 item_icon = ExtResource("4_b1pvl")
+
+[node name="Ball" parent="." instance=ExtResource("3_ix25a")]
+position = Vector2(362, 463)
+item_id = 2
+item_name = "Ball"
+item_icon = ExtResource("5_kduh5")

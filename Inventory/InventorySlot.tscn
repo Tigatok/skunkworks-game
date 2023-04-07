@@ -2,5 +2,11 @@
 
 [ext_resource type="Script" path="res://Inventory/InventorySlot.gd" id="1_sta1c"]
 
-[node name="InventorySlot" type="TextureRect"]
+[node name="InventorySlot" type="ColorRect"]
+color = Color(1, 1, 1, 0)
 script = ExtResource("1_sta1c")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

@@ -18,7 +18,6 @@ func remove_item(item: Item, quantity: int = 1):
 
 		if items[item.id]["quantity"] <= 0:
 			items.erase(item.id)
-
 		emit_signal("inventory_updated", item, "remove")
 	else:
 		print("Item not found in inventory")

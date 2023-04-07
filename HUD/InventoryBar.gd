@@ -1,14 +1,47 @@
 class_name InventoryBar extends PanelContainer
 
+signal update_active_item
+
+@export var num_slots: int = 5
+
 @onready var inventory:Inventory
 @onready var slot_container: HBoxContainer = $SlotContainer
 @onready var slot_scene = preload("res://Inventory/InventorySlot.tscn")
+@onready var slot_ids = ["1", "2", "3", "4", "5"]
 
-@export var num_slots: int = 5
+var active_item:Item
 
 func _ready() -> void:
 	_initialize_slots()
 
+func _unhandled_key_input(event):
+	var key_pressed:String = event.as_text()
+	if (!slot_ids.has(key_pressed)):
+		return
+	if (!event.is_action_pressed(key_pressed)):
+		return
+	# Index of slots starts at 0.
+	var slot_index = key_pressed.to_int() - 1
+	if(!item_exists_in_slot(slot_index)):
+		return
+	set_active_item(slot_index)
+	print(active_item)
+
+
+# Checks if an item exists in the provided slot
+func item_exists_in_slot(slot_index: int) -> bool:
+	var slot = slot_container.get_child(slot_index)
+	if (!slot.item):
+		return false
+	return true
+
+# Sets the active item
+func set_active_item(slot_index: int) -> void:
+	var item_slot = slot_container.get_child(slot_index)
+	active_item = item_slot.item
+	update_active_item.emit(active_item)
+	item_slot.color = Color.hex(0xffffff44)
+	
 func _initialize_slots() -> void:
 	for _i in range(num_slots):
 		var slot = slot_scene.instantiate()
