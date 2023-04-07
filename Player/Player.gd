@@ -1,26 +1,33 @@
 extends CharacterBody2D
 
 signal coin_picked
-signal item_picked_up
 
 @export var speed = 300
-@export var weapons = []
 @export var playerHealth = 50
-@onready var maxSize = playerHealth
 
+@onready var maxSize = playerHealth
+# A player has an inventory, and an inventory bar.
+@onready var inventory: Inventory = Inventory.new()
+@onready var inventoryBar:InventoryBar = $"../InventoryBar"
+
+func _ready():
+	add_to_group("Players")
+	inventory.connect('inventory_updated', Callable(inventoryBar, '_on_inventory_inventory_updated'))
+
+	
 func handle_move():
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input_dir * speed
 	handle_animation_change(input_dir)
 
-func handle_fire():
-	if(!Input.is_action_just_pressed("space")):
-		return
-	if (!$Weapon):
-		return
-	# Check for active weapon, or fire all of them.
-	var activeWeapon = $Weapon
-	activeWeapon.fireWeapon()
+#func handle_fire():
+#	if(!Input.is_action_just_pressed("space")):
+#		return
+#	if (!$Weapon):
+#		return
+#	# Check for active weapon, or fire all of them.
+#	var activeWeapon = $Weapon
+#	activeWeapon.fireWeapon()
 
 func handle_animation_change(input_dir:Vector2):
 	if (input_dir.x > 0):
@@ -38,7 +45,7 @@ func _physics_process(delta):
 		dead()
 		return
 	handle_move()
-	handle_fire()
+#	handle_fire()
 	move_and_collide(velocity * delta)
 	
 func dead():
@@ -52,10 +59,7 @@ func takeDamage(damageTaken: int):
 	$HealthBar/Green.size.x -= amountToRemove
 	playerHealth -= damageTaken
 
-func collectCoin():
-	print("collected coin")
-	coin_picked.emit()
-
-func collectWeapon(weapon):
-	print("Collected weapon", weapon)
-	item_picked_up.emit(weapon)
+func pick_up_item(item):
+	print("PCI", item.itemName)
+	# add to inventory?
+	inventory.add_item(item)
