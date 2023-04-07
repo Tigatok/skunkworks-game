@@ -72,6 +72,8 @@ func takeDamage(damage_taken: int):
 	player_health -= damage_taken
 
 func pick_up_item(item):
+	get_parent().remove_child(item)
+	add_child(item)
 	inventory.add_item(item)
 
 func _on_update_active_item(item):
