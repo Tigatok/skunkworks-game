@@ -15,14 +15,14 @@ signal use_item
 
 # Emit a signal so that whatever the item actually is, can handle it.
 func use():
+	pass
 #	emit_signal('use_item')
-	print("TE")
-	var missile = load("res://Missile/missile.tscn")
-	missile = missile.instantiate()
-	missile.linear_velocity = Vector2(1, (-4 * missile.speed))
-	missile.position = get_parent().position + Vector2(0, -45)
-	missile.damage = 5
-	self.add_child(missile)
+#	var missile = load("res://Missile/missile.tscn")
+#	missile = missile.instantiate()
+#	missile.linear_velocity = Vector2(1, (-4 * missile.speed))
+#	missile.position = get_parent().position + Vector2(0, -45)
+#	missile.damage = 5
+#	self.add_child(missile)
 
 func _ready():
 	var item_pickup_instance = $ItemPickup

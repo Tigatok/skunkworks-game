@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmunb1vxfj0w8"]
+[gd_scene load_steps=3 format=3 uid="uid://dmunb1vxfj0w8"]
 
 [ext_resource type="PackedScene" uid="uid://bq7rtwda5y4lb" path="res://Player/Player.tscn" id="2_043f6"]
 [ext_resource type="PackedScene" uid="uid://dc7pprina7ai6" path="res://HUD/InventoryBar.tscn" id="3_afki7"]
-[ext_resource type="PackedScene" uid="uid://cbvymn4nh8gi4" path="res://Item/Item.tscn" id="3_es4en"]
-[ext_resource type="Texture2D" uid="uid://cdd702vhdy7dq" path="res://Weapon/weapon.png" id="4_b1pvl"]
 
 [node name="Main" type="Node"]
 
@@ -22,9 +20,3 @@ offset_right = 160.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="Cannon" parent="." instance=ExtResource("3_es4en")]
-position = Vector2(471, 288)
-id = 1
-item_name = "Cannon"
-icon = ExtResource("4_b1pvl")
