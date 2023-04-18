@@ -10,13 +10,20 @@ func _unhandled_key_input(event: InputEvent):
 	if not event.is_pressed():
 		return
 	if range(KEY_1, KEY_7).has(event.keycode):
-		print("ASd")
-		inventory_set_active.emit(event.keycode - KEY_1)
+		var index = event.keycode - KEY_1
+#		item_grid.get_child(index).get_node('ActiveBorder').visible = true
+		for child in item_grid.get_children():
+			child.get_node('ActiveBorder').visible = false
+		inventory_set_active.emit(index)
 		
 func set_inventory_data(inventory_data:InventoryData) -> void:
 	inventory_data.inventory_updated.connect(populate_item_grid)
 	inventory_set_active.connect(inventory_data.set_active_slot_data)
+	inventory_data.connect('inventory_data_updated', Callable(self, '_on_inventory_data_updated'))
 	populate_item_grid(inventory_data)
+
+func _on_inventory_data_updated(slot_index:int):
+	item_grid.get_child(slot_index).get_node('ActiveBorder').visible = true
 
 func populate_item_grid(inventory_data:InventoryData) -> void:
 	for child in item_grid.get_children():

@@ -8,6 +8,13 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_hvmjv")
 
+[node name="ActiveBorder" type="ReferenceRect" parent="."]
+visible = false
+layout_mode = 2
+border_color = Color(1, 1, 1, 1)
+border_width = 2.0
+editor_only = false
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
 theme_override_constants/margin_left = 4
