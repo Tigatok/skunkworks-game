@@ -1,20 +1,15 @@
 extends CharacterBody2D
 
-#signal coin_picked
-
 @export var speed: int = 300
 @export var player_health: int = 50
+@export var inventory_data:InventoryData
 
 @onready var max_size:= player_health
-@onready var inventory: Inventory = Inventory.new()
-@onready var inventory_bar: InventoryBar = $"../InventoryBar"
-@onready var active_item: Item = null
 
 func _ready() -> void:
+	PlayerManager.player = self 
 	add_to_group("Players")
-	inventory.connect('inventory_updated', Callable(inventory_bar, '_on_inventory_inventory_updated'))
-	inventory_bar.connect("update_active_item", Callable(self, "_on_update_active_item"))
-	
+
 func handle_move():
 	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = input_dir * speed
@@ -24,23 +19,16 @@ func _unhandled_key_input(event):
 	var key_pressed:String = event.as_text()
 	if (!event.is_action_pressed(key_pressed)):
 		return	
-	if (key_pressed == 'Space'):
-		handle_use()
-		
+	if (key_pressed == "Space"):
+		var active_slot_data = get_active_slot_data()
+		if not active_slot_data:
+			return
+		active_slot_data.item_data.use(self)
 
-func handle_use():
-	if (!active_item):
+func get_active_slot_data() -> SlotData:
+	if not inventory_data.active_slot_data:
 		return
-	active_item.use()
-	pass
-#func handle_fire():
-#	if(!Input.is_action_just_pressed("space")):
-#		return
-#	if (!$Weapon):
-#		return
-#	# Check for active weapon, or fire all of them.
-#	var activeWeapon = $Weapon
-#	activeWeapon.fireWeapon()
+	return inventory_data.active_slot_data
 
 func handle_animation_change(input_dir:Vector2):
 	if (input_dir.x > 0):
@@ -64,18 +52,8 @@ func dead():
 	$AnimatedSprite2D.play("explode")
 	$AnimatedSprite2D.animation_finished
 
-	
 func takeDamage(damage_taken: int):
 	var ratio = float(damage_taken) / float(max_size)
 	var amount_to_remove = float(ratio) * float(100)
 	$HealthBar/Green.size.x -= amount_to_remove
 	player_health -= damage_taken
-
-func pick_up_item(item):
-	get_parent().remove_child(item)
-	add_child(item)
-	inventory.add_item(item)
-
-func _on_update_active_item(item):
-	print("New item for meee")
-	active_item = item

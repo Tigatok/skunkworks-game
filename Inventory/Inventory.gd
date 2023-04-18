@@ -1,23 +1,30 @@
-class_name Inventory
+class_name Inventory extends PanelContainer
 
-const ItemType = Item.ItemType
+const Slot = preload("res://Inventory/Slot.tscn")
 
-signal inventory_updated(Item, String)
-var items:Dictionary = {}
+signal inventory_set_active(index:int)
 
-func add_item(item:Item, quantity: int = 1):
-	if items.has(item.id):
-		items[item.id]["quantity"] += quantity
-	else:
-		items[item.id] = {"item": item, "quantity": quantity}
-	emit_signal("inventory_updated", item, "add")
+@onready var item_grid:GridContainer = $MarginContainer/ItemGrid
 
-func remove_item(item: Item, quantity: int = 1):
-	if items.has(item.id):
-		items[item.id]["quantity"] -= quantity
+func _unhandled_key_input(event: InputEvent):
+	if not event.is_pressed():
+		return
+	if range(KEY_1, KEY_7).has(event.keycode):
+		print("ASd")
+		inventory_set_active.emit(event.keycode - KEY_1)
+		
+func set_inventory_data(inventory_data:InventoryData) -> void:
+	inventory_data.inventory_updated.connect(populate_item_grid)
+	inventory_set_active.connect(inventory_data.set_active_slot_data)
+	populate_item_grid(inventory_data)
 
-		if items[item.id]["quantity"] <= 0:
-			items.erase(item.id)
-		emit_signal("inventory_updated", item, "remove")
-	else:
-		print("Item not found in inventory")
+func populate_item_grid(inventory_data:InventoryData) -> void:
+	for child in item_grid.get_children():
+		child.queue_free()
+	
+	for slot_data in inventory_data.slot_datas:
+		var slot = Slot.instantiate()
+		item_grid.add_child(slot)
+		
+		if slot_data:
+			slot.set_slot_data(slot_data)

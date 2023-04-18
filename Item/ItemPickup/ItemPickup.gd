@@ -1,15 +1,13 @@
-extends Area2D
+class_name ItemPickup extends Area2D
 
-@onready var item: Item
-@onready var sprite = $ItemIcon
-@export var texture:Texture
+@export var slot_data:SlotData
+
+@onready var item_sprite = $ItemSprite
 
 func _ready():
-	item = get_parent()
-	if(texture):
-		sprite.texture = texture
+	item_sprite.texture = slot_data.item_data.texture
 
-func _on_body_entered(body: Node) -> void:
-	if body.is_in_group("Players"):
-		body.pick_up_item(item)
-		queue_free()
+
+func _on_body_entered(body):
+	body.inventory_data.pick_up_slot_data(slot_data)
+	queue_free()

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://i7ydu4t0cric"]
+
+[ext_resource type="Script" path="res://Item/ItemData.gd" id="1_4msbh"]
+[ext_resource type="Texture2D" uid="uid://drht8bund82xh" path="res://Images/missile-1.png" id="2_ok6nj"]
+
+[resource]
+script = ExtResource("1_4msbh")
+item_name = "Red bullet"
+texture = ExtResource("2_ok6nj")

@@ -1,9 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbvymn4nh8gi4"]
-
-[ext_resource type="Script" path="res://Item/Item.gd" id="1_mlu2o"]
-[ext_resource type="PackedScene" uid="uid://brimw4vdfx63j" path="res://Item/ItemPickup/ItemPickup.tscn" id="2_2f7pu"]
-
-[node name="Item" type="Node2D"]
-script = ExtResource("1_mlu2o")
-
-[node name="ItemPickup" parent="." instance=ExtResource("2_2f7pu")]

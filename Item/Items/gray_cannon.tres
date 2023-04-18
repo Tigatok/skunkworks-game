@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemDataWeapon" load_steps=4 format=3 uid="uid://cplr885r4q2ti"]
+
+[ext_resource type="Script" path="res://Item/ItemDataWeapon.gd" id="1_4ybx1"]
+[ext_resource type="Texture2D" uid="uid://bi6ct0nlxdaei" path="res://Images/cannon-2.png" id="2_4wst2"]
+[ext_resource type="Resource" path="res://Item/Items/gray_bullet.tres" id="2_wdfvk"]
+
+[resource]
+script = ExtResource("1_4ybx1")
+damage = 5
+weapon_type = 0
+test = ExtResource("2_wdfvk")
+item_name = "Gray Cannon"
+texture = ExtResource("2_4wst2")
