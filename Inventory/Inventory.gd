@@ -11,18 +11,17 @@ func _unhandled_key_input(event: InputEvent):
 		return
 	if range(KEY_1, KEY_7).has(event.keycode):
 		var index = event.keycode - KEY_1
-#		item_grid.get_child(index).get_node('ActiveBorder').visible = true
-		for child in item_grid.get_children():
-			child.get_node('ActiveBorder').visible = false
 		inventory_set_active.emit(index)
 		
 func set_inventory_data(inventory_data:InventoryData) -> void:
 	inventory_data.inventory_updated.connect(populate_item_grid)
 	inventory_set_active.connect(inventory_data.set_active_slot_data)
-	inventory_data.connect('inventory_data_updated', Callable(self, '_on_inventory_data_updated'))
+	inventory_data.connect('inventory_active_slot_updated', Callable(self, 'on_inventory_active_slot_updated'))
 	populate_item_grid(inventory_data)
 
-func _on_inventory_data_updated(slot_index:int):
+func on_inventory_active_slot_updated(slot_index:int):
+	for item in item_grid.get_children():
+		item.get_node('ActiveBorder').visible = false
 	item_grid.get_child(slot_index).get_node('ActiveBorder').visible = true
 
 func populate_item_grid(inventory_data:InventoryData) -> void:

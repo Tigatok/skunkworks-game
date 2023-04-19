@@ -6,7 +6,7 @@
 
 [resource]
 script = ExtResource("1_4ybx1")
-damage = 5
+damage = 2
 weapon_type = 0
 test = ExtResource("2_wdfvk")
 item_name = "Gray Cannon"

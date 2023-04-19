@@ -8,11 +8,8 @@
 radius = 11.0
 height = 32.0
 
-[node name="Missile" type="RigidBody2D"]
+[node name="Missile" type="Area2D"]
 position = Vector2(322, 284)
-collision_layer = 0
-mass = 0.01
-gravity_scale = 2.66454e-15
 script = ExtResource("1_tywn1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -21,3 +18,5 @@ texture = SubResource("CompressedTexture2D_awu8h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ba53j")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

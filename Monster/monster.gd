@@ -4,38 +4,31 @@ extends RigidBody2D
 @export var damage = 5
 @onready var player = $"../Player"
 @onready var healthBar = $HealthBar
+@onready var max_health = health
+@onready var health_bar_size = $HealthBar.size.x
+@export var move_speed = 100
 
-signal damaged
-
-var damage_taken
 var totalSize = 100
 
-func _on_damaged():
-	var xRemove = totalSize / damage_taken
-	$HealthBar/Green.size.x -= xRemove
-
 func _physics_process(delta):
-	#move_and_collide(Vector2(player.position).normalized())
 	moveTowardPlayer(delta)
-#	if (!$Weapon):
-#		return
-#	# Check for active weapon, or fire all of them.
-#	var activeWeapon = $Weapon
-#	activeWeapon.fireWeapon()
 	
 func moveTowardPlayer(delta):
 	if (!player):
 		return
-	var direction = Vector2(player.position - self.position)
-	var moveSpeed = direction * delta * 0.4
-	move_and_collide(moveSpeed)
+	var direction = Vector2(player.position - self.position).normalized()
+	var amount_to_move = direction * delta * move_speed
+	move_and_collide(amount_to_move)
 
 func takeDamage(body):
-	damage_taken = body.damage
+	var damage_taken = body.damage
 	health -= damage_taken
 	body.queue_free()
-	damaged.emit()
+	var remove_amount = float(damage_taken)/float(max_health) * float(health_bar_size)
+	$HealthBar/Green.size.x -= remove_amount
+	
 	print("Hit, health: ", health)
+	
 	if (health <= 0):
 		die()
 
@@ -47,6 +40,7 @@ func die():
 	get_parent().add_child(coin)
 
 func _on_body_entered(body):
+	print("S")
 	if (body.name == "Missile"):
 		takeDamage(body)
 	if (body.name == "Player"):

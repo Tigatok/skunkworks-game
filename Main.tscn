@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://csevvi63suc2f"]
+[gd_scene load_steps=22 format=3 uid="uid://csevvi63suc2f"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_eo88a"]
 [ext_resource type="PackedScene" uid="uid://bq7rtwda5y4lb" path="res://Player/Player.tscn" id="2_043f6"]
@@ -7,8 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://dybwou4jjlyfh" path="res://Item/ItemPickup/ItemPickup.tscn" id="5_m2vei"]
 [ext_resource type="Resource" uid="uid://c00fcdxw8tn7x" path="res://Item/Items/red_cannon.tres" id="6_xt2av"]
 [ext_resource type="Script" path="res://Inventory/SlotData.gd" id="7_nrunk"]
-[ext_resource type="Resource" uid="uid://cplr885r4q2ti" path="res://Item/Items/gray_cannon.tres" id="8_40b5d"]
+[ext_resource type="Script" path="res://Item/ItemDataWeapon.gd" id="9_jo746"]
 [ext_resource type="Texture2D" uid="uid://c2io5sahs3k5e" path="res://Images/space-tilemap.png" id="9_wntvf"]
+[ext_resource type="PackedScene" uid="uid://bc2lrcgcgux71" path="res://Monster/monster.tscn" id="10_h4ggj"]
+[ext_resource type="Script" path="res://Item/ItemData.gd" id="10_k7dj4"]
+[ext_resource type="AudioStream" uid="uid://dn3d4gb0ctnw0" path="res://gamemusic.mp3" id="11_c3o0j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6naee"]
 
@@ -61,14 +64,33 @@ tile_size = Vector2i(64, 64)
 sources/1 = SubResource("TileSetAtlasSource_6naee")
 sources/2 = SubResource("TileSetAtlasSource_eupy3")
 
-[sub_resource type="Resource" id="Resource_fvif4"]
+[sub_resource type="Resource" id="Resource_4oap3"]
 script = ExtResource("7_nrunk")
 item_data = ExtResource("6_xt2av")
 quantity = 1
 
-[sub_resource type="Resource" id="Resource_snl6f"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_exwk1"]
+load_path = "res://.godot/imported/missile-2.png-8d1eba94ba3489b475d86b0ba01a56f6.ctex"
+
+[sub_resource type="Resource" id="Resource_8gagv"]
+script = ExtResource("10_k7dj4")
+item_name = "Gray Bullet"
+texture = SubResource("CompressedTexture2D_exwk1")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kisau"]
+load_path = "res://.godot/imported/cannon-2.png-ea7899b47b3e7ba324970c3e35f6569b.ctex"
+
+[sub_resource type="Resource" id="Resource_jhnkp"]
+script = ExtResource("9_jo746")
+damage = 2
+weapon_type = 0
+test = SubResource("Resource_8gagv")
+item_name = "Gray Cannon"
+texture = SubResource("CompressedTexture2D_kisau")
+
+[sub_resource type="Resource" id="Resource_mctuf"]
 script = ExtResource("7_nrunk")
-item_data = ExtResource("8_40b5d")
+item_data = SubResource("Resource_jhnkp")
 quantity = 1
 
 [node name="Main" type="Node"]
@@ -117,9 +139,17 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="ItemPickup" parent="." instance=ExtResource("5_m2vei")]
-position = Vector2(893, 399)
-slot_data = SubResource("Resource_fvif4")
+position = Vector2(968, 516)
+slot_data = SubResource("Resource_4oap3")
 
 [node name="ItemPickup2" parent="." instance=ExtResource("5_m2vei")]
-position = Vector2(996, 425)
-slot_data = SubResource("Resource_snl6f")
+position = Vector2(893, 516)
+slot_data = SubResource("Resource_mctuf")
+
+[node name="Monster" parent="." instance=ExtResource("10_h4ggj")]
+position = Vector2(635, 331)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_c3o0j")
+volume_db = -9.6
+autoplay = true

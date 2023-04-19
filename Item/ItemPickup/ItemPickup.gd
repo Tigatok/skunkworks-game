@@ -9,5 +9,7 @@ func _ready():
 
 
 func _on_body_entered(body):
+	if not body.name == 'Player':
+		return
 	body.inventory_data.pick_up_slot_data(slot_data)
 	queue_free()

@@ -4,6 +4,3 @@ class_name InventoryInterface extends Control
 
 func set_player_inventory_data(inventory_data:InventoryData) -> void:
 	player_inventory.set_inventory_data(inventory_data)
-
-func set_entity_inventory_data(entity_inventory:Inventory, inventory_data:InventoryData) -> void:
-	entity_inventory.set_inventory_data(inventory_data)

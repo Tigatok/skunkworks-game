@@ -26,9 +26,9 @@ func _unhandled_key_input(event):
 		active_slot_data.item_data.use(self)
 
 func get_active_slot_data() -> SlotData:
-	if not inventory_data.active_slot_data:
+	if not inventory_data.active_slot:
 		return
-	return inventory_data.active_slot_data
+	return inventory_data.active_slot
 
 func handle_animation_change(input_dir:Vector2):
 	if (input_dir.x > 0):
