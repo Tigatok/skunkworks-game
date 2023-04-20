@@ -1,7 +1,6 @@
 class_name ItemPickup extends Area2D
 
 @export var slot_data:SlotData
-
 @onready var item_sprite = $ItemSprite
 
 func _ready():

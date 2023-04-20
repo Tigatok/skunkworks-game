@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="ItemDataWeapon" load_steps=4 format=3 uid="uid://c00fcdxw8tn7x"]
+[gd_resource type="Resource" script_class="ItemDataWeapon" load_steps=5 format=3 uid="uid://c00fcdxw8tn7x"]
 
 [ext_resource type="Script" path="res://Item/ItemDataWeapon.gd" id="1_2pb16"]
 [ext_resource type="Texture2D" uid="uid://dw24xlkknyr7c" path="res://Images/weapon.png" id="2_l6c3r"]
 [ext_resource type="Resource" uid="uid://i7ydu4t0cric" path="res://Item/Items/red_bullet.tres" id="2_x467t"]
+[ext_resource type="AudioStream" uid="uid://drlpf3kygh7km" path="res://Sounds/pew.mp3" id="4_l7dct"]
 
 [resource]
 script = ExtResource("1_2pb16")
 damage = 5
 weapon_type = 0
-test = ExtResource("2_x467t")
+projectile_res = ExtResource("2_x467t")
+weapon_sound = ExtResource("4_l7dct")
 item_name = "Red cannon"
 texture = ExtResource("2_l6c3r")

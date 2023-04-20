@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="ItemDataWeapon" load_steps=4 format=3 uid="uid://cplr885r4q2ti"]
+[gd_resource type="Resource" script_class="ItemDataWeapon" load_steps=5 format=3 uid="uid://cplr885r4q2ti"]
 
 [ext_resource type="Script" path="res://Item/ItemDataWeapon.gd" id="1_4ybx1"]
 [ext_resource type="Texture2D" uid="uid://bi6ct0nlxdaei" path="res://Images/cannon-2.png" id="2_4wst2"]
 [ext_resource type="Resource" path="res://Item/Items/gray_bullet.tres" id="2_wdfvk"]
+[ext_resource type="AudioStream" uid="uid://drlpf3kygh7km" path="res://Sounds/pew.mp3" id="4_7tlvl"]
 
 [resource]
 script = ExtResource("1_4ybx1")
 damage = 2
 weapon_type = 0
-test = ExtResource("2_wdfvk")
+projectile_res = ExtResource("2_wdfvk")
+weapon_sound = ExtResource("4_7tlvl")
 item_name = "Gray Cannon"
 texture = ExtResource("2_4wst2")

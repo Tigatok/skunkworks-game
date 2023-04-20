@@ -1,5 +1,6 @@
 extends RigidBody2D
 
+signal monster_died(monster:Node)
 @export var health = 20
 @export var damage = 5
 @onready var player = $"../Player"
@@ -9,6 +10,9 @@ extends RigidBody2D
 @export var move_speed = 100
 
 var totalSize = 100
+
+func _ready():
+	add_to_group("Monsters")
 
 func _physics_process(delta):
 	moveTowardPlayer(delta)
@@ -38,10 +42,11 @@ func die():
 	coin = coin.instantiate()
 	coin.position = self.position
 	get_parent().add_child(coin)
+	monster_died.emit(self)
 
-func _on_body_entered(body):
+func _on_body_entered(body:Node):
 	print("S")
-	if (body.name == "Missile"):
+	if (body.is_in_group("Projectiles")):
 		takeDamage(body)
 	if (body.name == "Player"):
 		body.takeDamage(damage)
