@@ -13,9 +13,10 @@ func _ready() ->void:
 func _on_game_timer_timeout():
 	if  monsters.size() > 10:
 		return
-	var new_monster:RigidBody2D = monster.instantiate()
+	var new_monster:Monster = monster.instantiate()
 	var random_point = get_random_point_on_path(spawn_path)
 	new_monster.position = random_point
+	new_monster.monster_id = 'blob'
 	new_monster.connect("monster_died", Callable(self, '_on_monster_died'))
 	monsters.append(new_monster)
 	add_child(new_monster)

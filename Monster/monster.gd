@@ -1,8 +1,9 @@
-extends RigidBody2D
+class_name Monster extends RigidBody2D
 
 signal monster_died(monster)
 @export var health = 20
 @export var damage = 5
+@export var monster_id = 'blob'
 @onready var player = $"../Player"
 @onready var healthBar = $HealthBar
 @onready var max_health = health
