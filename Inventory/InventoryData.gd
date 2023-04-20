@@ -17,7 +17,6 @@ func pick_up_slot_data(slot_data:SlotData) -> bool:
 	return false
 
 func set_active_slot_data(slot_index: int) -> void:
-	print(slot_datas[slot_index])
 	if not slot_datas[slot_index]:
 		return
 	if active_slot:

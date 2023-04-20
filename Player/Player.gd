@@ -7,7 +7,6 @@ extends CharacterBody2D
 @onready var max_size:= player_health
 
 func _ready() -> void:
-	PlayerManager.player = self 
 	add_to_group("Players")
 
 func handle_move():

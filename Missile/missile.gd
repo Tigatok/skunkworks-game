@@ -19,7 +19,6 @@ func _physics_process(delta):
 
 # Missile has entered a body
 func _on_body_entered(body:Node):
-	print("Sasdasd", body.name)
 	if not body.is_in_group("Monsters"):
 		return
 	body.takeDamage(self)

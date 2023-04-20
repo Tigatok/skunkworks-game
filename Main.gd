@@ -27,10 +27,7 @@ func _on_monster_died(monster:Node):
 func get_random_point_on_path(path2D: Path2D) -> Vector2:
 	# Get a random offset along the baked path
 	var baked_length = path2D.curve.get_baked_length()
-	print("S", baked_length)
 	var random_offset = randf() * path2D.curve.get_baked_length()
-	print("R", random_offset)
 	# Interpolate the baked curve at the random offset
 	var random_point = path2D.curve.sample_baked(random_offset)
-	
 	return random_point

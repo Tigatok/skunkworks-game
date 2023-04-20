@@ -4,5 +4,4 @@ class_name ItemData extends Resource
 @export var texture:Texture
 
 func use(target) -> void:
-	print("use temdata")
 	pass 
