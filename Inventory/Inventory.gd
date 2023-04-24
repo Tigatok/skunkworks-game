@@ -22,9 +22,11 @@ func set_inventory_data(inventory_data:InventoryData) -> void:
 func on_inventory_active_slot_updated(slot_index:int):
 	for item in item_grid.get_children():
 		item.get_node('ActiveBorder').visible = false
+	print("S", item_grid.get_child(slot_index).get_node('ActiveBorder').visible)
 	item_grid.get_child(slot_index).get_node('ActiveBorder').visible = true
 
 func populate_item_grid(inventory_data:InventoryData) -> void:
+	print("GOO")
 	for child in item_grid.get_children():
 		child.queue_free()
 	

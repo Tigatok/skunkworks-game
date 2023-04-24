@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dmjhnel0he22r"]
+[gd_scene load_steps=20 format=3 uid="uid://dmjhnel0he22r"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_eo88a"]
 [ext_resource type="PackedScene" uid="uid://bq7rtwda5y4lb" path="res://Player/Player.tscn" id="2_043f6"]
@@ -88,17 +88,6 @@ script = ExtResource("7_nrunk")
 item_data = SubResource("Resource_5fiwf")
 quantity = 1
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_47qms"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_im565"]
-size = Vector2(1950, 10)
-
-[sub_resource type="Curve2D" id="Curve2D_ppb5v"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -16, -14, 0, 0, 0, 0, 1942.01, -21.9637, 0, 0, 0, 0, 1932.02, 1096.97, 0, 0, 0, 0, -13.0398, 1104.98, 0, 0, 0, 0, -16, -14)
-}
-point_count = 5
-
 [node name="Main" type="Node"]
 script = ExtResource("1_eo88a")
 
@@ -155,34 +144,5 @@ autoplay = true
 
 [node name="GameTimer" type="Timer" parent="."]
 autostart = true
-
-[node name="GameBorder" type="StaticBody2D" parent="."]
-collision_layer = 16
-collision_priority = 2.0
-physics_material_override = SubResource("PhysicsMaterial_47qms")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameBorder"]
-position = Vector2(965, -5)
-shape = SubResource("RectangleShape2D_im565")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="GameBorder"]
-position = Vector2(-1, 679)
-rotation = 1.5756
-shape = SubResource("RectangleShape2D_im565")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="GameBorder"]
-position = Vector2(1920, 496)
-rotation = 1.5756
-shape = SubResource("RectangleShape2D_im565")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="GameBorder"]
-position = Vector2(955, 1080)
-rotation = 3.13914
-shape = SubResource("RectangleShape2D_im565")
-
-[node name="SpawnPath" type="Path2D" parent="."]
-position = Vector2(-1.94719, -0.0742645)
-scale = Vector2(1.001, 0.998273)
-curve = SubResource("Curve2D_ppb5v")
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]

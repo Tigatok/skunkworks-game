@@ -11,11 +11,11 @@ func _ready() ->void:
 	inventory_interface.set_player_inventory_data(player.inventory_data)
 
 func _on_game_timer_timeout():
-	if  monsters.size() > 10:
+	if  monsters.size() > 20:
 		return
 	var new_monster:Monster = monster.instantiate()
-	var random_point = get_random_point_on_path(spawn_path)
-	new_monster.position = random_point
+	var safe_range = 1200
+	new_monster.position = player.position + Vector2(safe_range, 0).rotated(randf_range(0, 2*PI))
 	new_monster.monster_id = 'blob'
 	new_monster.connect("monster_died", Callable(self, '_on_monster_died'))
 	monsters.append(new_monster)

@@ -13,6 +13,9 @@ func pick_up_slot_data(slot_data:SlotData) -> bool:
 		if (not slot_datas[index]):
 			slot_datas[index] = slot_data
 			inventory_updated.emit(self)
+			if index == 0:
+				set_active_slot_data(index)
+				inventory_updated.emit(self)
 			return true
 	return false
 
