@@ -9,6 +9,7 @@ signal monster_died(monster)
 @onready var max_health = health
 @onready var health_bar_size = $HealthBar.size.x
 @export var move_speed = 100
+@onready var hurt_box = $HurtBox
 
 var totalSize = 100
 
@@ -18,6 +19,14 @@ func _ready():
 
 func _physics_process(delta):
 	moveTowardPlayer(delta)
+
+func _process(delta):
+	var overlapping_bodies = hurt_box.get_overlapping_bodies()
+	if overlapping_bodies.size() == 0:
+		return
+	if overlapping_bodies.has(player):
+		player.damaged.emit(self)
+	
 	
 func moveTowardPlayer(delta):
 	if (!player):
@@ -46,7 +55,15 @@ func die():
 #	monster_died.emit(self)
 
 func _on_body_entered(body:Node):
+	print("body entered", body)
 	if (body.is_in_group("Projectiles")):
 		takeDamage(body)
 	if (body.name == "Player"):
 		body.takeDamage(damage)
+
+
+func _on_hurt_box_body_entered(body):
+	if (body.is_in_group("Projectiles")):
+		takeDamage(body)
+#	if (body.name == "Player"):
+#		body.takeDamage(damage)

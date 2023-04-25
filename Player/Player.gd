@@ -4,6 +4,8 @@ extends CharacterBody2D
 @export var player_health: int = 50
 @export var inventory_data:InventoryData
 
+signal damaged(mob:Monster)
+
 @onready var max_size:= player_health
 
 func _ready() -> void:
@@ -45,7 +47,7 @@ func _physics_process(delta):
 		dead()
 		return
 	handle_move()
-	move_and_collide(velocity * delta)
+	var collide = move_and_collide(velocity * delta)
 	
 func dead():
 	$AnimatedSprite2D.play("explode")
@@ -56,3 +58,8 @@ func takeDamage(damage_taken: int):
 	var amount_to_remove = float(ratio) * float(100)
 	$HealthBar/Green.size.x -= amount_to_remove
 	player_health -= damage_taken
+
+
+func _on_damaged(mob:Monster):
+	var damage = mob.damage
+	takeDamage(damage)

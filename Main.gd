@@ -4,6 +4,7 @@ extends Node
 @onready var inventory_interface:InventoryInterface = $UI/InventoryInterface
 @onready var monster = preload("res://Monster/monster.tscn")
 @onready var spawn_path = $SpawnPath
+var safe_range = 100
 
 var monsters = []
 
@@ -11,10 +12,10 @@ func _ready() ->void:
 	inventory_interface.set_player_inventory_data(player.inventory_data)
 
 func _on_game_timer_timeout():
-	if  monsters.size() > 20:
+	if  monsters.size() > 0:
 		return
 	var new_monster:Monster = monster.instantiate()
-	var safe_range = 1200
+
 	new_monster.position = player.position + Vector2(safe_range, 0).rotated(randf_range(0, 2*PI))
 	new_monster.monster_id = 'blob'
 	new_monster.connect("monster_died", Callable(self, '_on_monster_died'))
