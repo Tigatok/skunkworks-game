@@ -87,6 +87,7 @@ sprite_frames = SubResource("SpriteFrames_3ma5k")
 shape = SubResource("CapsuleShape2D_e02xr")
 
 [node name="InvincibleTimer" type="Timer" parent="."]
+wait_time = 0.65
 
 [connection signal="damaged" from="." to="." method="_on_damaged"]
 [connection signal="timeout" from="InvincibleTimer" to="." method="_on_invincible_timer_timeout"]
