@@ -10,6 +10,7 @@ signal damaged(mob:Monster)
 @onready var max_size:= player_health
 @onready var invincible = false
 
+
 func _ready() -> void:
 	add_to_group("Players")
 
@@ -62,6 +63,7 @@ func takeDamage(damage_taken: int):
 	player_health -= damage_taken
 	invincible = true
 	invincible_timer.start()
+	material.set_shader_parameter('white', true)
 
 
 func _on_damaged(mob:Monster):
@@ -73,3 +75,4 @@ func _on_damaged(mob:Monster):
 
 func _on_invincible_timer_timeout():
 	invincible = false
+	material.set_shader_parameter('white', false)
