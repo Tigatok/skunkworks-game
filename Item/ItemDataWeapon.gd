@@ -20,8 +20,7 @@ func use(target)->void:
 	target.get_node("/root/Main").add_child(missile)
 
 func spawn_missile(target) -> Node:
-	if not visibility_notifier:
-		visibility_notifier = VisibleOnScreenNotifier2D.new()
+	visibility_notifier = VisibleOnScreenNotifier2D.new()
 	var missile_instance:Node = missile_scene.instantiate()
 	missile_instance.get_node("Sprite2D").texture = projectile_res.texture
 	missile_instance.position = target.position

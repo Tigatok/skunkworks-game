@@ -20,7 +20,7 @@ func _ready():
 func _physics_process(delta):
 	moveTowardPlayer(delta)
 
-func _process(delta):
+func _process(_delta):
 	var overlapping_bodies = hurt_box.get_overlapping_bodies()
 	if overlapping_bodies.size() == 0:
 		return

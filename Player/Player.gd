@@ -20,10 +20,7 @@ func handle_move():
 	handle_animation_change(input_dir)
 
 func _unhandled_key_input(event):
-	var key_pressed:String = event.as_text()
-	if (!event.is_action_pressed(key_pressed)):
-		return	
-	if (key_pressed == "Space"):
+	if (event.is_action_pressed("Space")):
 		var active_slot_data = get_active_slot_data()
 		if not active_slot_data:
 			return
@@ -50,11 +47,10 @@ func _physics_process(delta):
 		dead()
 		return
 	handle_move()
-	var collide = move_and_collide(velocity * delta)
+	move_and_collide(velocity * delta)
 	
 func dead():
 	$AnimatedSprite2D.play("explode")
-	$AnimatedSprite2D.animation_finished
 
 func takeDamage(damage_taken: int):
 	var ratio = float(damage_taken) / float(max_size)

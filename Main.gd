@@ -3,7 +3,6 @@ extends Node
 @onready var player = $Player
 @onready var inventory_interface:InventoryInterface = $UI/InventoryInterface
 @onready var monster = preload("res://Monster/monster.tscn")
-@onready var spawn_path = $SpawnPath
 @export var safe_range = 800
 @export var monsters_size = 10
 
@@ -23,14 +22,6 @@ func _on_game_timer_timeout():
 	monsters.append(new_monster)
 	add_child(new_monster)
 
-func _on_monster_died(monster:Node):
-	var index = monsters.find(monster)
+func _on_monster_died(mob:Node):
+	var index = monsters.find(mob)
 	monsters.remove_at(index)
-
-func get_random_point_on_path(path2D: Path2D) -> Vector2:
-	# Get a random offset along the baked path
-	var baked_length = path2D.curve.get_baked_length()
-	var random_offset = randf() * path2D.curve.get_baked_length()
-	# Interpolate the baked curve at the random offset
-	var random_point = path2D.curve.sample_baked(random_offset)
-	return random_point
