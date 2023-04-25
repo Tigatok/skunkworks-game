@@ -6,7 +6,9 @@ extends CharacterBody2D
 
 signal damaged(mob:Monster)
 
+@onready var invincible_timer = $InvincibleTimer
 @onready var max_size:= player_health
+@onready var invincible = false
 
 func _ready() -> void:
 	add_to_group("Players")
@@ -58,8 +60,16 @@ func takeDamage(damage_taken: int):
 	var amount_to_remove = float(ratio) * float(100)
 	$HealthBar/Green.size.x -= amount_to_remove
 	player_health -= damage_taken
+	invincible = true
+	invincible_timer.start()
 
 
 func _on_damaged(mob:Monster):
+	if invincible:
+		return
 	var damage = mob.damage
 	takeDamage(damage)
+
+
+func _on_invincible_timer_timeout():
+	invincible = false

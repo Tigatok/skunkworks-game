@@ -54,16 +54,6 @@ func die():
 #	get_parent().add_child(coin)
 #	monster_died.emit(self)
 
-func _on_body_entered(body:Node):
-	print("body entered", body)
-	if (body.is_in_group("Projectiles")):
-		takeDamage(body)
-	if (body.name == "Player"):
-		body.takeDamage(damage)
-
-
 func _on_hurt_box_body_entered(body):
 	if (body.is_in_group("Projectiles")):
 		takeDamage(body)
-#	if (body.name == "Player"):
-#		body.takeDamage(damage)
